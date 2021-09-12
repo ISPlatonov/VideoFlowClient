@@ -90,6 +90,10 @@ ApplicationWindow {
                                 text: address
                                 font.pointSize: Constants.font.pixelSize
                             }
+                            Text {
+                                text: "STATUS: " + (is_recording ? "RECORDING" : "STILL")
+                                color: (is_recording ? "red" : "blue")
+                            }
                         }
                     }
 
