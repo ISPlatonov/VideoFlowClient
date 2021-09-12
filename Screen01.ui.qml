@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import untitled1 1.0
+import VideoFlowClient 1.0
 
 //import "sources" as SourceList
 
