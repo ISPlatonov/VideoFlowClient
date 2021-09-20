@@ -4,5 +4,10 @@
         <file>qtquickcontrols2.conf</file>
         <file>covers/biba.png</file>
         <file>covers/boba.png</file>
+        <file>CameraOptions.qml</file>
+        <file>CameraList.qml</file>
+        <file>Data.qml</file>
+        <file>SharedData.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

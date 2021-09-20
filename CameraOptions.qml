@@ -1,0 +1,65 @@
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+
+import "."
+
+Item {
+    id: cameraOptions
+    anchors.fill: parent
+    visible: true
+
+    property int prop_index: parent.loader_prop_index
+
+    property var data_model: SharedData.sharedData
+
+    property string prop_name: data_model.get(prop_index).name
+    property string prop_address: data_model.get(prop_index).address
+    property string prop_cover: data_model.get(prop_index).cover
+    property bool prop_status: data_model.get(prop_index).is_recording
+
+    Column {
+        anchors.fill: parent
+        visible: true
+        anchors.margins: 40
+
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: 128
+            height: 128
+            source: prop_cover
+            smooth: true
+        }
+        Text {
+            //color: Constants.font.color
+            text: prop_name
+            font.pointSize: 20
+        }
+        Text {
+            //color: Constants.font.color
+            text: prop_address
+            font.pointSize: 12
+        }
+        Text {
+            text: "STATUS: " + (prop_status ? "RECORDING" : "STILL")
+            color: (prop_status ? "red" : "blue")
+        }
+        Button {
+            height: 80
+            anchors.left: parent.left
+            anchors.right: parent.right
+            text: (prop_status ? "Закончить" : "Начать") + " запись"
+            TapHandler {
+                onTapped: {
+                    prop_status = !prop_status
+                }
+            }
+        }
+    }
+
+    Connections {
+        function onGetIndex(index) {
+            data_model.setProperty(prop_index, is_recording, !prop_status)
+            //prop_status = !prop_status
+        }
+    }
+}
