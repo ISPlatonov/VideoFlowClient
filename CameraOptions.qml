@@ -29,6 +29,7 @@ Item {
             anchors.fill: parent
             visible: true
             anchors.margins: 40
+            spacing: 10
 
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -85,24 +86,21 @@ Item {
                     cameraOptions.deleteCamera(prop_index)
                 }
             }
-            Button {
-                height: 80
-                anchors.left: parent.left
-                anchors.right: parent.right
-                text: "Вернуться к списку камер"
-                onClicked: {
-                    cameraOptions.backToCameraList()
-                }
+        }
+    }
+    Item {
+        id: footer
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        //anchors.top: mainList.bottom
+        height: 70
+        Button {
+            text: "Вернуться к списку камер"
+            anchors.fill: parent
+            onClicked: {
+                cameraOptions.backToCameraList()
             }
         }
-
     }
-
-
-    /*Connections {
-        function onGetIndex(index) {
-            //data_model.setProperty(prop_index, is_recording, !prop_status)
-            //prop_status = !prop_status
-        }
-    }*/
 }

@@ -39,5 +39,8 @@ ApplicationWindow {
             mainLoader.source = "CameraList.qml"
             SharedData.sharedData.remove(mainLoader.loader_prop_index)
         }
+        function onAddCamera() {
+            mainLoader.source = "AddCamera.qml"
+        }
     }
 }

@@ -9,5 +9,6 @@
         <file>Data.qml</file>
         <file>SharedData.qml</file>
         <file>qmldir</file>
+        <file>AddCamera.qml</file>
     </qresource>
 </RCC>

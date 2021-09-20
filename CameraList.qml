@@ -10,6 +10,7 @@ Item {
     visible: true
 
     signal openCameraOptions(int index)
+    signal addCamera()
 
     ScrollView {
         //visible: true
@@ -81,27 +82,8 @@ Item {
             id: addCamera
             text: "Добавить камеру"
             anchors.fill: parent
-            onClicked: console.log("add new camera pressed")
+            onClicked: cameraList.addCamera()
         }
-        /*Row {
-            anchors.fill: parent
-            Button {
-                id: addCamera
-                text: "Добавить камеру"
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                onClicked: console.log("add new camera pressed")
-            }
-            Button {
-                id: deleteCamera
-                text: "Удалить камеру"
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                onClicked: console.log("delete a camera pressed")
-            }
-        }*/
-
-
     }
 }
 
