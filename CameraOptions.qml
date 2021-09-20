@@ -19,6 +19,7 @@ Item {
 
     signal backToCameraList()
     signal deleteCamera(int prop_index)
+    signal editCamera()
 
     ScrollView {
         anchors.fill: parent
@@ -74,7 +75,7 @@ Item {
                 anchors.right: parent.right
                 text: "Настроить камеру"
                 onClicked: {
-                    // open EditCamera.qml
+                    cameraOptions.editCamera()
                 }
             }
             Button {

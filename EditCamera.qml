@@ -4,9 +4,11 @@ import QtQuick.Controls 2.15
 import "."
 
 Item {
-    id: addCamera
+    id: editCamera
     anchors.fill: parent
     visible: true
+
+    property int prop_index: parent.loader_prop_index
 
     property var data_model: SharedData.sharedData
 
@@ -14,7 +16,11 @@ Item {
     property alias prop_address: addressField.text
     property alias prop_cover: imageField.text
 
-    signal backToCameraList()
+    prop_name: SharedData.sharedData.get(prop_index).name
+    prop_address: SharedData.sharedData.get(prop_index).address
+    prop_cover: SharedData.sharedData.get(prop_index).cover
+
+    signal backToCamera()
 
     ScrollView {
         anchors.fill: parent
@@ -49,15 +55,15 @@ Item {
                 placeholderText: qsTr("Путь к иконке (необязательно)")
             }
             Button {
-                text: "Добавить камеру"
+                text: "Применить настройки"
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: 40
                 onClicked: {
                     if (prop_name !== "" && prop_address !== "") {
                         prop_cover = (prop_cover !== "") ? imageField.text : "covers/DefaultCameraImage.png"
-                        SharedData.sharedData.append({"name": prop_name, "address": prop_address, "cover": prop_cover, "is_recording": false})
-                        addCamera.backToCameraList()
+                        SharedData.sharedData.set(prop_index, {"name": prop_name, "address": prop_address, "cover": prop_cover, "is_recording": SharedData.sharedData.get(prop_index).is_recording})
+                        editCamera.backToCamera()
                     }
                 }
             }
@@ -70,10 +76,10 @@ Item {
             //anchors.top: mainList.bottom
             height: 70
             Button {
-                text: "Вернуться к списку камер"
+                text: "Вернуться к камере"
                 anchors.fill: parent
                 onClicked: {
-                    addCamera.backToCameraList()
+                    editCamera.backToCamera()
                 }
             }
         }

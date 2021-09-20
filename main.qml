@@ -42,5 +42,11 @@ ApplicationWindow {
         function onAddCamera() {
             mainLoader.source = "AddCamera.qml"
         }
+        function onEditCamera() {
+            mainLoader.source = "EditCamera.qml"
+        }
+        function onBackToCamera() {
+            mainLoader.source = "CameraOptions.qml"
+        }
     }
 }

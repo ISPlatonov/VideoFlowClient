@@ -11,5 +11,6 @@
         <file>qmldir</file>
         <file>AddCamera.qml</file>
         <file>covers/DefaultCameraImage.png</file>
+        <file>EditCamera.qml</file>
     </qresource>
 </RCC>
