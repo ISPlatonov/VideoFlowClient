@@ -54,7 +54,11 @@ Item {
                 anchors.right: parent.right
                 height: 40
                 onClicked: {
-                    //
+                    if (nameField.text !== "" && addressField.text !== "") {
+                        var temp_prop_cover = (imageField.text !== "") ? imageField.text : "covers/DefaultCameraImage.png"
+                        SharedData.sharedData.append({"name": nameField.text, "address": addressField.text, "cover": temp_prop_cover})
+                        addCamera.backToCameraList()
+                    }
                 }
             }
         }

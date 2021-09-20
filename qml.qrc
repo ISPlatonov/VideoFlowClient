@@ -10,5 +10,6 @@
         <file>SharedData.qml</file>
         <file>qmldir</file>
         <file>AddCamera.qml</file>
+        <file>covers/DefaultCameraImage.png</file>
     </qresource>
 </RCC>
