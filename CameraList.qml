@@ -66,38 +66,6 @@ Item {
                         }
                     }
                 }
-                // cameraOptionsPane
-                Pane {
-                    id: cameraOptionsPane
-                    property bool shown: false
-                    visible: height > 0
-                    height: shown ? implicitHeight : 0
-                    Behavior on height {
-                        NumberAnimation {
-                            easing.type: Easing.InOutQuad
-                        }
-                    }
-                    clip: true
-                    padding: 0
-                    anchors.top: parent.top
-                    anchors.right: parent.right
-                    //anchors.left: parent.left
-                    //anchors.fill: parent
-
-                    Row {
-                        //height: parent.height
-                        anchors.fill: parent
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        Button {
-                            text: is_recording ? "save rec." : "start rec."
-                            onClicked: {is_recording = !is_recording; console.log("---\nis rec.: ", is_recording, "\nsource list index: ", prop_index, "\n---")}
-                        }
-                        Button {
-                            text: "change props"
-                            onClicked: {}
-                        }
-                    }
-                }
             }
         }
     }

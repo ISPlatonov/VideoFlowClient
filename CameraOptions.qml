@@ -63,7 +63,7 @@ Item {
                 anchors.right: parent.right
                 text: (prop_status ? "Закончить" : "Начать") + " запись"
                 onClicked: {
-                    prop_status = !prop_status
+                    data_model.setProperty(prop_index, "is_recording", !prop_status)
                 }
             }
             Button {
