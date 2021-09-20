@@ -3,7 +3,6 @@ import QtQuick.Controls 2.15
 
 import "."
 
-//import "Data.qml" as Data
 
 Item {
     id: cameraList
@@ -18,6 +17,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: footer.top
+        anchors.margins: 20
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         clip: true
         ListView {
             implicitHeight: childrenRect.height
@@ -29,22 +30,17 @@ Item {
             delegate: ItemDelegate {
                 id: itemDelegate
                 width: mainrect.width
-                height: 80
+                height: 100
 
                 property string prop_name: name
                 property string prop_address: address
                 property bool prop_status: is_recording
                 property int prop_index: index
-
-                //onClicked: stackView.push(componentPage)
-
-                TapHandler {
-                    //onTapped: cameraOptionsPane.shown = !cameraOptionsPane.shown
-                    onTapped: cameraList.openCameraOptions(prop_index)
-                }
+                onClicked: cameraList.openCameraOptions(prop_index)
 
                 Row {
                     anchors.fill: parent
+                    anchors.margins: 10
                     //anchors.verticalCenter: parent.verticalCenter
                     Image {
                         anchors.verticalCenter: parent.verticalCenter
@@ -94,15 +90,11 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         Button {
                             text: is_recording ? "save rec." : "start rec."
-                            TapHandler {
-                                onTapped: {is_recording = !is_recording; console.log("---\nis rec.: ", is_recording, "\nsource list index: ", prop_index, "\n---")}
-                            }
+                            onClicked: {is_recording = !is_recording; console.log("---\nis rec.: ", is_recording, "\nsource list index: ", prop_index, "\n---")}
                         }
                         Button {
                             text: "change props"
-                            TapHandler {
-                                //onTapped:
-                            }
+                            onClicked: {}
                         }
                     }
                 }
@@ -121,9 +113,7 @@ Item {
             id: addCamera
             text: "Добавить камеру"
             anchors.fill: parent
-            TapHandler {
-                onTapped: console.log("add new camera pressed")
-            }
+            onClicked: console.log("add new camera pressed")
         }
     }
 }

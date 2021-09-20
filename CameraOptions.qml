@@ -17,44 +17,77 @@ Item {
     property string prop_cover: data_model.get(prop_index).cover
     property bool prop_status: data_model.get(prop_index).is_recording
 
-    Column {
+    signal backToCameraList()
+
+    ScrollView {
         anchors.fill: parent
         visible: true
-        anchors.margins: 40
+        contentWidth: availableWidth
 
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: 128
-            height: 128
-            source: prop_cover
-            smooth: true
-        }
-        Text {
-            //color: Constants.font.color
-            text: prop_name
-            font.pointSize: 20
-        }
-        Text {
-            //color: Constants.font.color
-            text: prop_address
-            font.pointSize: 12
-        }
-        Text {
-            text: "STATUS: " + (prop_status ? "RECORDING" : "STILL")
-            color: (prop_status ? "red" : "blue")
-        }
-        Button {
-            height: 80
-            anchors.left: parent.left
-            anchors.right: parent.right
-            text: (prop_status ? "Закончить" : "Начать") + " запись"
-            TapHandler {
-                onTapped: {
+        Column {
+            anchors.fill: parent
+            visible: true
+            anchors.margins: 40
+
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: 128
+                height: 128
+                source: prop_cover
+                smooth: true
+            }
+            Text {
+                //color: Constants.font.color
+                text: prop_name
+                font.pointSize: 20
+                width: parent.width
+                clip: true
+            }
+            Text {
+                //color: Constants.font.color
+                text: prop_address
+                font.pointSize: 12
+                width: parent.width
+                clip: true
+                //wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+            Text {
+                text: "STATUS: " + (prop_status ? "RECORDING" : "STILL")
+                color: (prop_status ? "red" : "blue")
+                width: parent.width
+                clip: true
+            }
+            Button {
+                height: 80
+                anchors.left: parent.left
+                anchors.right: parent.right
+                text: (prop_status ? "Закончить" : "Начать") + " запись"
+                onClicked: {
                     prop_status = !prop_status
                 }
             }
+            Button {
+                height: 80
+                anchors.left: parent.left
+                anchors.right: parent.right
+                text: "Настроить камеру"
+                onClicked: {
+                    // open EditCamera.qml
+                }
+            }
+            Button {
+                height: 80
+                anchors.left: parent.left
+                anchors.right: parent.right
+                text: "Вернуться к списку камер"
+                onClicked: {
+                    cameraOptions.backToCameraList()
+                }
+            }
         }
+
     }
+
 
     Connections {
         function onGetIndex(index) {
