@@ -83,6 +83,25 @@ Item {
             anchors.fill: parent
             onClicked: console.log("add new camera pressed")
         }
+        /*Row {
+            anchors.fill: parent
+            Button {
+                id: addCamera
+                text: "Добавить камеру"
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                onClicked: console.log("add new camera pressed")
+            }
+            Button {
+                id: deleteCamera
+                text: "Удалить камеру"
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                onClicked: console.log("delete a camera pressed")
+            }
+        }*/
+
+
     }
 }
 

@@ -18,6 +18,7 @@ Item {
     property bool prop_status: data_model.get(prop_index).is_recording
 
     signal backToCameraList()
+    signal deleteCamera(int prop_index)
 
     ScrollView {
         anchors.fill: parent
@@ -79,6 +80,15 @@ Item {
                 height: 80
                 anchors.left: parent.left
                 anchors.right: parent.right
+                text: "Удалить камеру"
+                onClicked: {
+                    cameraOptions.deleteCamera(prop_index)
+                }
+            }
+            Button {
+                height: 80
+                anchors.left: parent.left
+                anchors.right: parent.right
                 text: "Вернуться к списку камер"
                 onClicked: {
                     cameraOptions.backToCameraList()
@@ -89,10 +99,10 @@ Item {
     }
 
 
-    Connections {
+    /*Connections {
         function onGetIndex(index) {
-            data_model.setProperty(prop_index, is_recording, !prop_status)
+            //data_model.setProperty(prop_index, is_recording, !prop_status)
             //prop_status = !prop_status
         }
-    }
+    }*/
 }
