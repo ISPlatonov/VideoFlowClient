@@ -18,19 +18,16 @@ ApplicationWindow {
         source: "CameraList.qml"
         anchors.fill: parent
         property int loader_prop_index
-        //signal getIndex(int index)
-        onLoaded: console.log("page is loaded")
+        //onLoaded: console.log("page is loaded")
     }
 
     Connections {
         target: mainLoader.item
+        ignoreUnknownSignals: true
         function onOpenCameraOptions(index) {
-            console.log("itemDelegate tapped, index = ", index)
+            //console.log("itemDelegate tapped, index = ", index)
             mainLoader.loader_prop_index = index
             mainLoader.source = "CameraOptions.qml"
-            //mainLoader.getIndex(mainLoader.loader_prop_index)
-            //mainLoader.children.prop_index = mainLoader.loader_prop_index
-            //console.log(mainLoader.children.prop_index)
         }
         function onBackToCameraList() {
             mainLoader.source = "CameraList.qml"

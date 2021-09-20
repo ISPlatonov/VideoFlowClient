@@ -52,12 +52,10 @@ Item {
                     }
                     Column {
                         Text {
-                            //color: Constants.font.color
                             text: prop_name
                             font.pointSize: 20
                         }
                         Text {
-                            //color: Constants.font.color
                             text: prop_address
                             font.pointSize: 12
                         }
