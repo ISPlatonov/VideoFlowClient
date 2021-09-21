@@ -74,6 +74,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 text: "Настроить камеру"
+                enabled: !prop_status
                 onClicked: {
                     cameraOptions.editCamera()
                 }
@@ -83,6 +84,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 text: "Удалить камеру"
+                enabled: !prop_status
                 onClicked: {
                     cameraOptions.deleteCamera(prop_index)
                 }
