@@ -12,10 +12,11 @@ Item {
 
     property var data_model: SharedData.sharedData
 
-    property string prop_name: data_model.get(prop_index).name
+    property string prop_name: SharedData.sharedData.get(prop_index).name
     property string prop_address: data_model.get(prop_index).address
     property string prop_cover: data_model.get(prop_index).cover
     property bool prop_status: data_model.get(prop_index).is_recording
+    property var prop_rec_id: data_model.get(prop_index).rec_id
 
     signal backToCameraList()
     signal deleteCamera(int prop_index)
@@ -66,7 +67,47 @@ Item {
                 anchors.right: parent.right
                 text: (prop_status ? "Закончить" : "Начать") + " запись"
                 onClicked: {
-                    data_model.setProperty(prop_index, "is_recording", !prop_status)
+                    var index = prop_index
+                    if (prop_status === false) {
+                        // start rec.
+                        let request = new XMLHttpRequest()
+                        request.open("POST", "http://localhost:5000/rec/start", true);
+                        request.setRequestHeader("Content-Type", "application/json");
+                        request.onreadystatechange = function() {
+                            if (request.readyState === XMLHttpRequest.DONE) {
+                                if (request.status && request.status === 200) {
+                                    let json_data = JSON.parse(request.responseText);
+                                    SharedData.sharedData.setProperty(index, "rec_id", parseInt(json_data.id));
+                                    console.log("response:", SharedData.sharedData.get(index).rec_id);
+                                    //var result = JSON.parse(request.responseText)
+                                    //for (var i in result)
+                                }
+                            }
+                        }
+                        let data = JSON.stringify({"address": prop_address})
+                        request.send(data);
+                        SharedData.sharedData.setProperty(prop_index, "is_recording", !prop_status)
+                    }
+                else {
+                        // stop rec.
+                        let request = new XMLHttpRequest()
+                        request.open("POST", "http://localhost:5000/rec/stop", true);
+                        request.setRequestHeader("Content-Type", "application/json");
+                        request.onreadystatechange = function() {
+                            if (request.readyState === XMLHttpRequest.DONE) {
+                                if (request.status && request.status === 200) {
+                                    let json_data = JSON.parse(request.responseText);
+                                    //data_model.setProperty(prop_index, "rec_id", json_data.video_address);
+                                    console.log("response:", json_data.video_address);
+                                    //var result = JSON.parse(request.responseText)
+                                    //for (var i in result)
+                                }
+                            }
+                        }
+                        let data = JSON.stringify({"id": prop_rec_id})
+                        request.send(data);
+                        SharedData.sharedData.setProperty(index, "is_recording", !prop_status)
+                    }
                 }
             }
             Button {

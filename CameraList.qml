@@ -69,18 +69,29 @@ Item {
         }
     }
 
-    Item {
+    Row {
         id: footer
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         //anchors.top: mainList.bottom
+        spacing: 5
         height: 70
         Button {
-            id: addCamera
+            //id: addCamera
             text: "Добавить камеру"
-            anchors.fill: parent
+            width: parent.width / 2
+            height: parent.height
+            //anchors.fill: parent
             onClicked: cameraList.addCamera()
+        }
+        Button {
+            //id: addCamera
+            text: "Добавить камеру"
+            width: parent.width / 2
+            height: parent.height
+            //anchors.fill: parent
+            onClicked: cameraList.recordAllCameras()
         }
     }
 }

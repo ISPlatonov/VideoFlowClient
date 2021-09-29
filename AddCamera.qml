@@ -56,7 +56,7 @@ Item {
                 onClicked: {
                     if (prop_name !== "" && prop_address !== "") {
                         prop_cover = (prop_cover !== "") ? imageField.text : "covers/DefaultCameraImage.png"
-                        SharedData.sharedData.append({"name": prop_name, "address": prop_address, "cover": prop_cover, "is_recording": false})
+                        SharedData.sharedData.append({"name": prop_name, "address": prop_address, "cover": prop_cover, "is_recording": false, "rec_id": 0})
                         addCamera.backToCameraList()
                     }
                 }

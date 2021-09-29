@@ -62,7 +62,7 @@ Item {
                 onClicked: {
                     if (prop_name !== "" && prop_address !== "") {
                         prop_cover = (prop_cover !== "") ? imageField.text : "covers/DefaultCameraImage.png"
-                        SharedData.sharedData.set(prop_index, {"name": prop_name, "address": prop_address, "cover": prop_cover, "is_recording": SharedData.sharedData.get(prop_index).is_recording})
+                        SharedData.sharedData.set(prop_index, {"name": prop_name, "address": prop_address, "cover": prop_cover, "is_recording": SharedData.sharedData.get(prop_index).is_recording, "rec_id": SharedData.sharedData.get(prop_index).rec_id})
                         editCamera.backToCamera()
                     }
                 }
